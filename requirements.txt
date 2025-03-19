@@ -1,8 +1,8 @@
 fastapi
 pydantic
 uvicorn
-jinja2
-python-multipart  # for the Form
-python-jose
+# jinja2
+# python-multipart  # for the Form
+# python-jose
 sqlalchemy
-pysqlite3 
+# pysqlite3 

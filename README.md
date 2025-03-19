@@ -1,1 +1,3 @@
-uvicorn app:app --reload
+# Create product.db file
+
+uvicorn Product.main:app --reload
