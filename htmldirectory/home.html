@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <h1>Welcome, {{ username }}!</h1>
+
+    <h2>Upload Assignment</h2>
+    <form action="/submitform" method="post" enctype="multipart/form-data">
+        <label for="assignment">Assignment:</label>
+        <input type="text" id="assignment" name="assignment" required>
+        <br>
+        <label for="assignement_file">Assignment File:</label>
+        <input type="file" id="assignement_file" name="assignment_file" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
