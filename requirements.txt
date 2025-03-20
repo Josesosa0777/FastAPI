@@ -2,9 +2,9 @@ fastapi
 pydantic
 uvicorn
 # jinja2
-# python-multipart  # for the Form
-# python-jose
+python-multipart  # for the Form
 sqlalchemy
 # pysqlite3 
 passlib
 bcrypt
+python-jose

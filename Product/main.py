@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from . import models
 from .database import engine
-from .routers import product, seller
+from .routers import product, seller, login
 
 app = FastAPI(
     # Adding metadata:
@@ -21,13 +21,6 @@ app = FastAPI(
 )
 app.include_router(product.router)
 app.include_router(seller.router)
+app.include_router(login.router)
 
 models.Base.metadata.create_all(engine)
-
-
-
-# oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-# # Secret key for encoding and decoding JWT token
-# SECRET_KEY = "my-secret"
-# ALGORITHM = "HS256"
