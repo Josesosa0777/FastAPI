@@ -2,15 +2,17 @@ from fastapi import APIRouter
 from sqlalchemy.orm import Session
 from fastapi.params import Depends
 from ..database import get_db
-from .. import models, schemas, database
 from ..schemas import TokenData
-from typing import List
+from .. import models
 from fastapi import status, Response, HTTPException
 from passlib.context import CryptContext
 from datetime import datetime, timedelta, timezone
 from jose import jwt, JWTError
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
+from fastapi import Request
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
 
 # # Secret key for encoding and decoding JWT token
 SECRET_KEY = "my-secret"
@@ -21,10 +23,21 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 20
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
+# templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), '..', 'templates'))
 
 
-router = APIRouter(
-)
+
+router = APIRouter()
+
+# Dependency to get templates from main.py
+def get_templates() -> Jinja2Templates:
+    from ..main import templates
+    return templates
+
+# Route to render the login form
+@router.get("/login", response_class=HTMLResponse)
+async def login_form(request: Request, templates: Jinja2Templates = Depends(get_templates)):
+    return templates.TemplateResponse("login.html", {"request": request})
 
 def generate_token(data: dict):
     to_encode = data.copy()
