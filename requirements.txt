@@ -6,3 +6,5 @@ uvicorn
 # python-jose
 sqlalchemy
 # pysqlite3 
+passlib
+bcrypt
